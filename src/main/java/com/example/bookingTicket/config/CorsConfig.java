@@ -20,21 +20,21 @@ public class CorsConfig {
         // Allow credentials
         config.setAllowCredentials(true);
         
-        config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedOrigin("http://localhost:3001");
-        config.addAllowedOrigin("http://localhost:3002");
+        // Allowed origins - make sure to include the exact frontend URL
         config.addAllowedOrigin("https://ticket-website-frontend.vercel.app");
+        config.addAllowedOrigin("http://localhost:3000");
         
-        config.addAllowedHeader("Origin");
-        config.addAllowedHeader("Content-Type");
-        config.addAllowedHeader("Accept");
-        config.addAllowedHeader("Authorization");
+        // Allowed headers
+        config.addAllowedHeader("*");
         
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("DELETE");
-        config.addAllowedMethod("OPTIONS");
+        // Allowed methods
+        config.addAllowedMethod("*");
+        
+        // Exposed headers
+        config.addExposedHeader("*");
+        
+        // Max age for preflight requests
+        config.setMaxAge(3600L);
         
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
