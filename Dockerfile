@@ -22,11 +22,11 @@ COPY --from=builder /app/target/*.jar app.jar
 EXPOSE ${PORT:-8080}
 
 # Set environment variables for Java
-ENV JAVA_OPTS="-Xmx512m -Xms256m -Dserver.port=${PORT:-8080} -Dlogging.level.root=DEBUG -Dlogging.level.org.springframework=DEBUG -Dlogging.level.com.example.bookingTicket=DEBUG"
+ENV JAVA_OPTS="-Xmx512m -Xms256m -Dserver.port=${PORT:-8080}"
 
 # Add health check
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD curl -f http://localhost:${PORT:-8080}/actuator/health || exit 1
 
-# Run the application with debug logging
-ENTRYPOINT ["sh", "-c", "echo 'Starting application on port: '${PORT:-8080} && java $JAVA_OPTS -jar app.jar --debug"]
+# Run the application
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
