@@ -1,9 +1,7 @@
 services:
   - type: web
     name: ticket-booking-backend
-    env: java
-    buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/*.jar
+    env: docker
     envVars:
       - key: DB_HOST
         value: mysql.railway.internal
