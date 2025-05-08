@@ -31,4 +31,6 @@ Dockerfile
 
 # Other
 README.md
-HELP.md 
+HELP.md
+.env
+*.md 
